@@ -3,6 +3,7 @@ package day09
 
 import readInput
 import kotlin.math.abs
+import kotlin.math.sign
 
 data class Position(val x: Int, val y: Int) {
     operator fun plus(direction: Direction): Position {
@@ -37,7 +38,7 @@ data class State(val knots: List<Position>) {
             val tail = if (head.inTouch(knot)) {
                 knot
             } else {
-                knots[i - 1]
+                Position(knot.x + (head.x - knot.x).sign, knot.y + (head.y - knot.y).sign)
             }
             newRope.add(tail)
         }
